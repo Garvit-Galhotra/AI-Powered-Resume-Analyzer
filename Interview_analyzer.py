@@ -108,6 +108,9 @@ def calculate_final_score(scores_list):
     """
     Computes the final interview score based on all responses.
     """
+    if not scores_list:
+        return 0  # If no answers were recorded, return 0
+
     avg_confidence = np.mean([s["confidence"] for s in scores_list])
     avg_clarity = np.mean([s["clarity"] for s in scores_list])
     avg_relevance = np.mean([s["relevance"] for s in scores_list])
@@ -130,7 +133,7 @@ def run_interview(job_role, num_questions):
 
     for i, question in enumerate(questions, 1):
         print(f"\n❓ Question {i}: {question}")
-        speak_text(question)  # Convert text question to speech
+        speak_text(question)  # Speak the question
 
         # Transcribe user's answer in real-time
         transcribed_text = transcribe_audio()
@@ -140,10 +143,12 @@ def run_interview(job_role, num_questions):
         response_scores = analyze_response(transcribed_text)
         scores_list.append(response_scores)
 
-        print(f"📊 Scores: {response_scores}")
+        print(f"📊 Scores for Question {i}: {response_scores}")
 
-    # Calculate final interview score
+    # Calculate final average score
     final_score = calculate_final_score(scores_list)
+    
+    # Display the final result
     print(f"\n🏆 Final Interview Score: {final_score} / 100")
     speak_text(f"Your final interview score is {final_score} out of 100.")  # Speak the final score
 
