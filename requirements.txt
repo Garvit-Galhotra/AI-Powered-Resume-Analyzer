@@ -1,0 +1,12 @@
+sentence-transformers    # fine tuning the semantic similarity model
+torch                    # Deep learning Models
+pandas                   # Dataset manipulation and analysis
+pdfplumber               # to extract text from pdf files
+python-docx              # to extract text from docx files
+autogen                  # AI Agents
+openpyxl                # to extract text from excel files
+datasets                # to load and process datasets
+accelerate>=0.26.0     # to accelerate the training process
+transformers[torch]    # to load and process datasets
+spacy                   # NLP library for text processing
+ag2[openai]        # to use OpenAI's GPT-3.5-turbo model
