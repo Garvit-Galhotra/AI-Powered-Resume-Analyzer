@@ -1,0 +1,85 @@
+# 🎙 AI-Powered Interview Analyzer
+
+## 📌 Overview
+The **AI-Powered Interview Analyzer** is a real-time voice-based interview assessment tool that:
+- Conducts **mock interviews** based on pre-defined questions for different job roles.
+- Evaluates user responses based on **confidence, clarity, relevance, and tone**.
+- Provides **real-time feedback** and a **final interview score**.
+- Suggests job roles based on interview performance.
+
+## 🎯 Features
+✅ **Live Interview Mode** – No MP3 storage, real-time speech recognition using Vosk.  
+✅ **Predefined Questions** – Uses stored questions instead of AI-generated ones.  
+✅ **Speech-to-Text Conversion** – Converts user responses into text using Vosk.  
+✅ **Text-to-Speech (TTS)** – Converts interview questions into speech.  
+✅ **Interview Scoring System** – Rates answers on **confidence, clarity, relevance, and tone**.  
+✅ **Job Recommendations** – Suggests jobs based on interview performance.  
+
+## 🏗️ Project Structure
+```
+📁 AI-Powered-Interview-Analyzer
+│── 📜 README.md         # Project Documentation
+│── 📜 requirements.txt  # Required dependencies
+│── 📜 interview_analyzer.py  # Main interview logic
+│── 📜 questions.json    # Predefined job interview questions
+│── 📁 models/           # Vosk speech recognition models
+```
+
+## 🔧 Installation & Setup
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/your-username/AI-Powered-Interview-Analyzer.git
+cd AI-Powered-Interview-Analyzer
+```
+
+### 2️⃣ Install Dependencies
+```sh
+pip install -r requirements.txt
+```
+
+### 3️⃣ Download Vosk Model
+Download the **Vosk model** (small version for English) and place it in the `models/` folder:
+```sh
+wget https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
+unzip vosk-model-small-en-us-0.15.zip -d models/
+```
+
+### 4️⃣ Run the Interview Analyzer
+```sh
+python interview_analyzer.py
+```
+
+## 🎤 How It Works
+1️⃣ **User selects a job role** from a dropdown menu.  
+2️⃣ **User chooses the number of questions** they want to answer.  
+3️⃣ The system **asks a question via text-to-speech (TTS)**.  
+4️⃣ The user **responds via voice**, which is converted into text.  
+5️⃣ The response is **analyzed and scored** for:
+   - **Confidence**
+   - **Clarity**
+   - **Relevance**
+   - **Tone**
+6️⃣ The system **displays scores for each question**.  
+7️⃣ At the end, the **final interview score** is calculated.  
+8️⃣ The system **suggests job roles** based on the user’s performance.
+
+## 📊 Scoring System
+| Score Range  | Interpretation  | Suggested Roles |
+|-------------|----------------|----------------|
+| **90+**  | Highly Skilled | AI Engineer, ML Engineer, Data Engineer |
+| **75-89** | Mid-Level  | Software Developer, Python Developer, Cloud Support Engineer |
+| **60-74** | Entry-Level | Web Developer, System Administrator, Database Engineer |
+| **Below 60** | Needs Improvement | Suggests learning paths and skill-building courses |
+
+## 🔥 Future Enhancements
+- **Facial Expression Analysis** for better confidence scoring.
+- **Live2D Avatar Integration** for an interactive interview experience.
+- **More Languages Support** using different Vosk models.
+- **Resume Integration** to personalize interview questions.
+
+## 📜 License
+This project is licensed under the **MIT License**.
+
+## 🤝 Contributing
+Contributions are welcome! Feel free to **fork this repository** and submit a **pull request**. 🚀
+
