@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Querya - Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='review.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Querya</div>
+            <ul>
+                <li><a href="http://127.0.0.1:5000/" target="_blank">Home</a></li>
+                <li><a href="http://127.0.0.1:5000/resume" target="_blank">Resume Analyzer</a></li>
+                <li><a href="http://127.0.0.1:5000/interview" target="_blank">Interview Analyzer</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="upload-container">
+            <h2>Upload Your Resume</h2>
+            <div class="upload-box" id="drop-area">
+                <p>Drag & Drop your PDF or DOCX files here</p>
+                <input type="file" id="file-input" hidden multiple accept=".pdf,.docx">
+                <button onclick="document.getElementById('file-input').click()">Browse Files</button>
+                <div class="file-list" id="file-list"></div>
+                <p class="error" id="error-message"></p>
+                
+            </div>
+            
+            <!-- ATS Score Indicator with Meter -->
+            <button id="retry-button" onclick="window.location.href='http://127.0.0.1:5000/review'">
+                Try Another Resume
+            </button>
+            <div class="ats-score-container">
+                <h3>ATS Score</h3>
+                <div class="meter">
+                    <div class="needle" id="needle"></div>
+                </div>
+                <p id="score-text">Your ATS score will appear here after upload.</p>
+               
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Querya | All Rights Reserved</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='review.js') }}" defer></script>
+</body>
+
+</html>

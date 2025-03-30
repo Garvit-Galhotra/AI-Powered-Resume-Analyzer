@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Querya An AI-Powered Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Home_page.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Querya</div>
+            <ul>
+                <li><a href="http://127.0.0.1:5000/" target="_blank">Home</a></li>
+                <li><a href="http://127.0.0.1:5000/review" target="_blank">Resume Analysis</a></li>
+                <li><a href="http://127.0.0.1:5000/interview" target="_blank">Interview Analyzer</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Explore Now...</h1>
+        <p>Boost your career with AI-powered insights.</p>
+        <a href="#why-use" class="cta-button" id="scroll-button">Get Started</a>
+    </section>
+
+    <section class="features" id="why-use">
+        <div class="feature-box">
+            <h2>Why are we using this?</h2>
+            <p>We are using this application to help <b>job seekers</b> understand how their resumes perform against
+                <b>ATS
+                    systems</b> and improve their <b>interview readiness</b> by providing AI-driven <b>resume
+                    scoring</b> and <b>mock
+                    interview evaluations</b>.
+            </p>
+        </div>
+
+        <div class="feature-box">
+            <h2>Mission</h2>
+            <p>The mission is to <b>empower job seekers</b> with AI-driven insights that <b>enhance their resumes</b>
+                and <b>improve
+                    their interview skills, making them more competitive</b> in the job market. </p>
+        </div>
+
+        <div class="feature-box">
+            <h2>Vision</h2>
+            <p>The vision is to <b>revolutionize job preparation</b> by creating an AI-powered platform that provides
+                <b>accurate resume evaluations and real-time interview feedback, making career advancement more
+                    accessible and data-driven</b>.
+            </p>
+        </div>
+    </section>
+
+
+    <p class="section-intro">
+        🚀 <strong><b>Unlock Your Career Potential with</b></strong>
+
+        <span class="highlight">AI-Powered Resume Analysis</span>
+
+        <span class="highlight-alt">Interview Preparation</span>
+    </p>
+
+
+
+    <section class="how-it-works">
+        <h2>How Querya Works</h2>
+        <div class="steps">
+            <a href="http://127.0.0.1:5000/review" target="_blank"><div class="step" id="resume1">
+                <!-- <img src="{{ url_for('static', filename='Images/Untitled design.png') }}" alt="Upload Resume"> -->
+                 <h3>Upload Your Resume</h3>
+                 <p>Upload Your resume here...</p>
+            </div></a>
+            <p>Upload your resume, and let our AI analyze it against ATS standards. Get a comprehensive review, instant
+                feedback, and expert insights!</p>
+            <p id="parah">Get a complete resume analysis    with a detailed score and expert suggestions to refine,
+                optimize, and
+                maximize your chances of landing your dream job!</p>
+            <a href="http://127.0.0.1:5000/interview"><div class="step" id="feedback1">
+                <!-- <img src="ai-feedback-icon.png" alt="AI Feedback"> -->
+                <h3>Get AI Feedback</h3>
+                <p>Receive an in-depth resume score and suggestions for improvement.</p>
+            </div></a>
+            <a href="http://127.0.0.1:5000/jobs"><div class="step" id="interview1">
+                <!-- <img src="interview-icon.png" alt="Interview Preparation"> -->
+                <h3>Prepare for Interviews</h3>
+                <p>Use our AI-powered interview simulator to enhance your confidence and skills.</p>
+            </div></a>
+            <p>Boost your confidence and sharpen your skills with our AI-powered interview simulator. Get real-time
+                feedback and ace your next interview!</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Querya | All Rights Reserved</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='Home_page.js') }}" defer></script>
+</body>
+
+</html>
