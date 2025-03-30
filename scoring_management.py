@@ -94,8 +94,8 @@ if __name__ == "__main__":
 
     results = score_resume(resume_file, job_description, required_skills)
 
-    #print("\n🔹 Resume Scoring Results:")
-    #print(f"📄 Resume: {results['resume_path']}")
-    #print(f"✅ ATS Compliance Score: {results['ats_compliance']} / 100")
-    #print(f"🏆 Final Resume Score: {results['final_resume_score']} / 100")
+    print("\n🔹 Resume Scoring Results:")
+    print(f"📄 Resume: {results['resume_path']}")
+    print(f"✅ ATS Compliance Score: {results['ats_compliance']} / 100")
+    print(f"🏆 Final Resume Score: {results['final_resume_score']} / 100")
     print(f"💡 AI Feedback:\n{results['ai_feedback']}")

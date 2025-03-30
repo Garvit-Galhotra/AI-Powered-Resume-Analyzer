@@ -5,9 +5,9 @@ import pyttsx3  # Import pyttsx3 for text-to-speech
 from vosk import Model, KaldiRecognizer
 import queue
 
-# ===========================
+
 # STEP 1: LOAD MODELS & SETUP AUDIO STREAM
-# ===========================
+
 
 # Load Vosk speech recognition model (Make sure the model is in your project folder)
 vosk_model_path = "vosk-model-small-en-us-0.15"
@@ -28,9 +28,9 @@ def audio_callback(indata, frames, time, status):
         print(f"⚠️ Audio error: {status}")
     audio_queue.put(bytes(indata))  # Store raw audio data
 
-# ===========================
+
 # STEP 2: LOAD INTERVIEW QUESTIONS
-# ===========================
+
 
 def load_interview_questions(job_role, num_questions):
     """
@@ -44,9 +44,9 @@ def load_interview_questions(job_role, num_questions):
     else:
         return ["No questions available for this job role."]
 
-# ===========================
+
 # STEP 3: TEXT-TO-SPEECH FUNCTION
-# ===========================
+
 
 def speak_text(text):
     """
@@ -60,9 +60,8 @@ def speak_text(text):
     tts_engine.say(text)
     tts_engine.runAndWait()
 
-# ===========================
 # STEP 4: REAL-TIME SPEECH RECOGNITION
-# ===========================
+
 
 def transcribe_audio():
     """
@@ -78,9 +77,9 @@ def transcribe_audio():
                 result = json.loads(recognizer.Result())
                 return result["text"]
 
-# ===========================
+
 # STEP 5: RESPONSE ANALYSIS (SCORING SYSTEM)
-# ===========================
+
 
 def analyze_response(response_text):
     """
@@ -106,9 +105,9 @@ def analyze_response(response_text):
 
 
 
-# ===========================
+
 # STEP 6: FINAL INTERVIEW SCORING
-# ===========================
+
 import numpy as np
 
 def calculate_final_score(scores_list):
@@ -129,9 +128,22 @@ def calculate_final_score(scores_list):
     return round(final_score, 2), round(avg_confidence, 2), round(avg_clarity, 2), round(avg_relevance, 2), round(avg_tone, 2)
 
 
-# ===========================
+
 # STEP 7: RUN REAL-TIME INTERVIEW
-# ===========================
+
+def suggest_job(final_score):
+    """
+    Suggests a job based on the final interview score.
+    """
+    if final_score >= 90:
+        return "🔥 You are highly skilled! Consider roles like **AI Engineer, ML Engineer, or Data Engineer**."
+    elif 75 <= final_score < 90:
+        return "✅ Great job! You are suitable for **Software Developer, Python Developer, or Cloud Support Engineer**."
+    elif 60 <= final_score < 75:
+        return "📈 You have potential! Consider **Web Developer, System Administrator, or Database Engineer**."
+    else:
+        return "📚 Keep improving! Consider upskilling with courses on **communication, problem-solving, and technical skills.**"
+
 
 def run_interview(job_role, num_questions):
     """
@@ -167,10 +179,12 @@ def run_interview(job_role, num_questions):
     print(f"🔍 Average Clarity: {avg_clarity} / 100")
     print(f"🎯 Average Relevance: {avg_relevance} / 100")
     print(f"🎭 Average Tone Score: {avg_tone} / 100")
-
+    
     # Speak the final score
     speak_text(f"Your final interview score is {final_score} out of 100. Your confidence score was {avg_confidence}, clarity was {avg_clarity}, and relevance was {avg_relevance}.")
-
+    # AI suggested Jobs
+    speak_text(suggest_job(final_score))
+    print(suggest_job(final_score))
     return final_score
 
 

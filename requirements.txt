@@ -9,6 +9,5 @@ datasets                # to load and process datasets
 accelerate>=0.26.0     # to accelerate the training process
 transformers[torch]    # to load and process datasets
 spacy                   # NLP library for text processing
-ag2[openai]        # to use OpenAI's GPT-3.5-turbo model
 sounddevice
 pyttsx3
