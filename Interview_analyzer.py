@@ -84,39 +84,50 @@ def transcribe_audio():
 
 def analyze_response(response_text):
     """
-    Evaluates the interview response based on confidence, clarity, and relevance.
+    Analyzes the response and returns a score for confidence, clarity, relevance, and tone.
     """
-    word_count = len(response_text.split())
-    sentence_count = response_text.count(".") + response_text.count("!") + response_text.count("?")
-    avg_sentence_length = word_count / max(sentence_count, 1)
+    if not response_text.strip():
+        return {"confidence": 0, "clarity": 0, "relevance": 0, "tone": 0}  # Ensure 'tone' key exists
 
-    confidence_score = min(100, avg_sentence_length * 10)  # Longer sentences indicate more confidence
-    clarity_score = min(100, (100 - abs(15 - avg_sentence_length) * 5))  # Ideal sentence length: ~15 words
-    relevance_score = np.random.randint(50, 100)  # Placeholder (can be improved)
+    # Dummy logic for scoring (Replace with real NLP analysis)
+    confidence_score = min(100, max(50, len(response_text) * 2))  # Fake confidence scoring
+    clarity_score = min(100, max(50, len(response_text.split()) * 5))  # Fake clarity scoring
+    relevance_score = min(100, max(50, len(set(response_text.lower().split())) * 3))  # Fake relevance scoring
+
+    # 🔹 **New: Ensure tone score is included**
+    tone_score = min(100, max(50, len(response_text) % 100))  # Fake tone scoring
 
     return {
-        "confidence": round(confidence_score, 2),
-        "clarity": round(clarity_score, 2),
-        "relevance": round(relevance_score, 2)
+        "confidence": confidence_score,
+        "clarity": clarity_score,
+        "relevance": relevance_score,
+        "tone": tone_score  # 🔹 Ensure this key is always present
     }
+
+
 
 # ===========================
 # STEP 6: FINAL INTERVIEW SCORING
 # ===========================
+import numpy as np
 
 def calculate_final_score(scores_list):
     """
     Computes the final interview score based on all responses.
     """
     if not scores_list:
-        return 0  # If no answers were recorded, return 0
+        return 0, 0, 0, 0, 0  # If no answers were recorded, return zeros
 
     avg_confidence = np.mean([s["confidence"] for s in scores_list])
     avg_clarity = np.mean([s["clarity"] for s in scores_list])
     avg_relevance = np.mean([s["relevance"] for s in scores_list])
+    avg_tone = np.mean([s["tone"] for s in scores_list])  # New: Average Tone Score
 
-    final_score = (avg_confidence * 0.4) + (avg_clarity * 0.3) + (avg_relevance * 0.3)
-    return round(final_score, 2)
+    # Final Interview Score (Weighted Average)
+    final_score = (avg_confidence * 0.3) + (avg_clarity * 0.25) + (avg_relevance * 0.25) + (avg_tone * 0.2)
+
+    return round(final_score, 2), round(avg_confidence, 2), round(avg_clarity, 2), round(avg_relevance, 2), round(avg_tone, 2)
+
 
 # ===========================
 # STEP 7: RUN REAL-TIME INTERVIEW
@@ -144,19 +155,27 @@ def run_interview(job_role, num_questions):
         scores_list.append(response_scores)
 
         print(f"📊 Scores for Question {i}: {response_scores}")
+        print(f"🎭 Detected Tone: {'Positive' if response_scores['tone'] >= 90 else 'Neutral' if response_scores['tone'] >= 70 else 'Negative'}")
 
-    # Calculate final average score
-    final_score = calculate_final_score(scores_list)
-    
-    # Display the final result
-    print(f"\n🏆 Final Interview Score: {final_score} / 100")
-    speak_text(f"Your final interview score is {final_score} out of 100.")  # Speak the final score
+    # Calculate final average scores
+    final_score, avg_confidence, avg_clarity, avg_relevance, avg_tone = calculate_final_score(scores_list)
+
+    # Display full final report
+    print("\n🏆 Final Interview Report:")
+    print(f"⭐ Final Interview Score: {final_score} / 100")
+    print(f"💡 Average Confidence: {avg_confidence} / 100")
+    print(f"🔍 Average Clarity: {avg_clarity} / 100")
+    print(f"🎯 Average Relevance: {avg_relevance} / 100")
+    print(f"🎭 Average Tone Score: {avg_tone} / 100")
+
+    # Speak the final score
+    speak_text(f"Your final interview score is {final_score} out of 100. Your confidence score was {avg_confidence}, clarity was {avg_clarity}, and relevance was {avg_relevance}.")
 
     return final_score
 
-# ===========================
+
+
 # STEP 8: TEST THE SYSTEM
-# ===========================
 
 if __name__ == "__main__":
     job_role = input("🔹 Enter the job role you want to prepare for: ")
